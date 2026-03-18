@@ -1,0 +1,33 @@
+---
+- name: Fetch root CA from Bitwarden
+  ansible.builtin.command:
+    cmd: rbw get "kixago-root-ca.crt" --field notes
+  register: root_ca
+  changed_when: false
+  no_log: true
+
+- name: Write root CA certificate to home
+  ansible.builtin.copy:
+    content: "{{ root_ca.stdout }}\n"
+    dest: "{{ ansible_facts['env']['HOME'] }}/kixago-root-ca.crt"
+    mode: '0644'
+
+- name: Create local CA certificates directory
+  ansible.builtin.file:
+    path: /usr/local/share/ca-certificates
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Install root CA into system trust store
+  ansible.builtin.copy:
+    content: "{{ root_ca.stdout }}\n"
+    dest: /usr/local/share/ca-certificates/kixago-root-ca.crt
+    mode: '0644'
+  become: true
+
+- name: Update CA certificates
+  ansible.builtin.command:
+    cmd: update-ca-certificates
+  become: true
+  changed_when: false

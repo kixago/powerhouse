@@ -82,6 +82,7 @@ powerhouse() {
   local cmd="${1:-apply}"
   case "$cmd" in
   apply)
+    rbw unlocked 2>/dev/null || rbw unlock
     ansible-playbook ~/.powerhouse/ansible/site.yml --diff -i ~/.powerhouse/ansible/inventory.ini
     ;;
   check)
