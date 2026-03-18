@@ -1,0 +1,7 @@
+---
+- name: Stow mpv config
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t {{ stow_target_home }} mpv
+  check_mode: false
+  register: stow_mpv
+  changed_when: stow_mpv.rc != 0

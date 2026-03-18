@@ -1,0 +1,1 @@
+root=/dev/nvme0n1p2 rw quiet loglevel=3 rd.systemd.show_status=false amd_pstate=passive mitigations=auto amdgpu.gpu_recovery=1 amdgpu.dc=1 amdgpu.sg_display=0 amdgpu.dpm=1 iommu=pt usbcore.autosuspend=-1 nvme_core.default_ps_max_latency_us=0 pcie_aspm=off amdgpu.ppfeaturemask=0xfffd3fff
