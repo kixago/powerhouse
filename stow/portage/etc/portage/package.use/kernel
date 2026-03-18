@@ -1,0 +1,4 @@
+sys-kernel/gentoo-sources experimental
+sys-kernel/linux-firmware compress-zstd
+sys-devel/binutils xxhash -pgo
+sys-libs/binutils-libs 64-bit-bfd

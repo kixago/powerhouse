@@ -1,0 +1,45 @@
+# /etc/portage/package.use/hyprland
+
+# Hyprland - XWayland for legacy app compatibility
+gui-wm/hyprland X hyprpm
+
+# GTK Layer Shell
+gui-libs/gtk-layer-shell introspection
+
+# === X11 library exceptions (minimal set) ===
+x11-libs/cairo X
+x11-libs/libxkbcommon X
+dev-qt/qtbase X icu libproxy
+kde-frameworks/kwindowsystem X
+
+# === KDE/Qt flags for kdeconnect ===
+kde-frameworks/kconfig qml
+kde-frameworks/sonnet qml
+dev-qt/qt5compat qml
+dev-qt/qtmultimedia qml
+
+# === App-specific flags ===
+gui-apps/rofi-wayland drun
+
+# Telegram
+net-im/telegram-desktop -X screencast
+media-libs/tg_owt screencast
+media-video/ffmpeg vpx opus
+
+# Dolphin
+kde-apps/dolphin -handbook -telemetry
+
+# MPV
+media-video/mpv lua
+
+# Dependencies
+sys-libs/zlib minizip
+media-plugins/alsa-plugins pulseaudio
+
+# Qt multimedia/compat needs these for KDE
+dev-qt/qtmultimedia X
+dev-qt/qt5compat icu
+
+kde-misc/kdeconnect telephony #zeroconf
+
+dev-cpp/cairomm X

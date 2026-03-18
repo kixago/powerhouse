@@ -1,0 +1,54 @@
+app-emulation/libvirt bash-completion fuse nfs
+app-emulation/qemu spice usbredir fuse nfs
+app-emulation/virt-manager gui
+app-emulation/incus qemu
+# required by app-emulation/libvirt-12.0.0::gentoo[virt-network]
+# required by app-emulation/libvirt-glib-5.0.0-r1::gentoo
+# required by app-emulation/virt-manager-5.1.0-r1::gentoo
+# required by virt-manager (argument)
+>=net-dns/dnsmasq-2.91 script
+# required by app-crypt/swtpm-0.10.1::gentoo
+# required by app-emulation/libvirt-12.0.0::gentoo[qemu]
+# required by app-emulation/libvirt-glib-5.0.0-r1::gentoo
+# required by app-emulation/virt-manager-5.1.0-r1::gentoo
+# required by virt-manager (argument)
+>=net-libs/gnutls-3.8.12-r1 pkcs11 tools
+# required by app-emulation/virt-manager-5.1.0-r1::gentoo[gui]
+# required by virt-manager (argument)
+>=net-misc/spice-gtk-0.42-r4 usbredir
+# required by media-video/ffmpeg-8.0.1::gentoo[samba]
+# required by www-client/firefox-148.0::gentoo
+# required by firefox (argument)
+>=net-fs/samba-4.23.6 client
+# required by net-fs/samba-4.23.6::gentoo
+# required by net-fs/cifs-utils-7.5::gentoo[acl]
+>=net-libs/ngtcp2-1.21.0 gnutls
+# required by x11-base/xwayland-24.1.9::gentoo
+# required by gui-wm/hyprland-0.54.1::hyproverlay[X]
+# required by @selected
+# required by @world (argument)
+>=media-libs/mesa-26.0.1 X
+# required by dev-cpp/cairomm-1.18.0::gentoo
+# required by dev-cpp/pangomm-2.56.1::gentoo
+# required by dev-cpp/gtkmm-4.20.0::gentoo
+# required by media-sound/pavucontrol-6.1-r1::gentoo
+# required by media-sound/pavucontrol (argument)
+# required by kde-frameworks/kdnssd-6.23.0::gentoo[-minimal]
+# required by kde-misc/kdeconnect-25.12.2::gentoo[zeroconf]
+# required by kdeconnect (argument)
+>=net-dns/avahi-0.9_rc3 mdnsresponder-compat
+# required by gui-libs/astal-9999::powerhouse-repo
+# required by astal (argument)
+>=dev-lang/vala-0.56.18 valadoc
+# required by media-gfx/graphviz-14.1.2::gentoo
+# required by dev-lang/vala-0.56.18::gentoo[valadoc]
+# required by gui-libs/astal-9999::powerhouse-repo
+# required by astal (argument)
+>=media-libs/gd-2.3.3-r4 fontconfig truetype
+# required by gui-libs/ags-9999::powerhouse-repo
+# required by ags (argument)
+>=dev-libs/gnim-9999 gtk4
+# required by media-gfx/imagemagick-7.1.2.10::gentoo[heif]
+# required by app-misc/fastfetch-2.59.0::gentoo[imagemagick]
+# required by fastfetch (argument)
+>=media-libs/libheif-1.20.2 x265

@@ -1,0 +1,13 @@
+COMMON_FLAGS="-O2 -march=native -mtune=native -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+LDFLAGS="-Wl,--as-needed"
+CC="x86_64-pc-linux-gnu-gcc"
+CXX="x86_64-pc-linux-gnu-g++"
+CPP="x86_64-pc-linux-gnu-gcc -E"
+AR="x86_64-pc-linux-gnu-ar"
+NM="x86_64-pc-linux-gnu-nm"
+RANLIB="x86_64-pc-linux-gnu-ranlib"
+
+AS="x86_64-pc-linux-gnu-as"
+LD="x86_64-pc-linux-gnu-ld.bfd"

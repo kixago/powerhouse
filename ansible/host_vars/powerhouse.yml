@@ -1,0 +1,17 @@
+---
+# CPU/Build
+makeopts: "-j16 -l18"
+emerge_jobs: "5"
+emerge_load: "18"
+
+# GPU
+video_cards: "amdgpu radeonsi"
+llvm_targets: "AMDGPU X86"
+
+# Portage
+accept_keywords: "~amd64"
+portage_tmpdir: "/var/tmp/portage"
+
+# System
+locale: "en_US.UTF-8"
+timezone: "America/New_York"  # adjust if needed

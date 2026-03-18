@@ -1,0 +1,14 @@
+---
+- name: Set Portage profile
+  command: eselect profile set default/linux/amd64/23.0/no-multilib/systemd
+  become: true
+  check_mode: false
+  changed_when: false
+
+- name: Stow portage config
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t /etc portage
+  become: true
+  check_mode: false
+  register: stow_portage
+  changed_when: stow_portage.rc != 0

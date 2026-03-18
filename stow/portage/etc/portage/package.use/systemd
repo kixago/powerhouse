@@ -1,0 +1,69 @@
+sys-apps/systemd boot homed cryptsetup lzma idn gnutls curl elfutils xkb
+sys-apps/systemd-utils boot kernel-install
+sys-kernel/installkernel systemd systemd-boot
+# required by x11-libs/pango-1.57.0::gentoo
+# required by www-client/firefox-148.0::gentoo
+# required by firefox (argument)
+>=media-libs/freetype-2.14.2 harfbuzz
+# required by gui-apps/rofi-wayland-1.7.8_p1::guru
+# required by rofi-wayland (argument)
+>=x11-libs/cairo-1.18.4-r1 X
+# required by gui-apps/rofi-wayland-1.7.8_p1::guru
+# required by rofi-wayland (argument)
+>=x11-libs/pango-1.57.0 X
+# required by app-containers/incus-6.22::gentoo
+# required by incus (argument)
+>=dev-util/xdelta-3.0.11-r1 lzma
+# required by app-containers/incus-6.22::gentoo
+# required by incus (argument)
+>=sys-fs/squashfs-tools-4.7.5 lzma
+# required by app-containers/lxc-6.0.6::gentoo[caps,tools]
+# required by app-containers/incus-6.22::gentoo
+# required by incus (argument)
+>=sys-libs/libcap-2.77 static-libs
+# required by x11-misc/xdg-utils-1.2.1-r9::gentoo
+# required by www-client/brave-browser-1.87.192::another-brave-overlay
+# required by brave-browser (argument)
+>=app-text/xmlto-0.0.28-r11 text
+# required by www-client/firefox-148.0::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.16.0 postproc
+# required by media-video/ffmpeg-8.0.1::gentoo[opengl]
+# required by www-client/firefox-148.0::gentoo
+# required by firefox (argument)
+>=media-libs/libglvnd-1.7.0 X
+# required by www-client/brave-browser-1.87.192::another-brave-overlay
+# required by brave-browser (argument)
+>=x11-libs/gtk+-3.24.51 X
+# required by x11-libs/gtk+-3.24.51::gentoo
+# required by www-client/brave-browser-1.87.192::another-brave-overlay
+# required by brave-browser (argument)
+>=media-libs/libepoxy-1.5.10-r3 X
+# required by llvm-runtimes/clang-unwindlib-config-22::gentoo[llvm-libunwind,default-compiler-rt]
+# required by llvm-runtimes/clang-runtime-22::gentoo
+# required by llvm-core/clang-common-22.1.0::gentoo
+# required by llvm-core/clang-22.1.0-r2::gentoo
+# required by llvm-core/clang-toolchain-symlinks-22::gentoo
+>=llvm-runtimes/libunwind-22.1.0 static-libs
+# required by llvm-core/clang-common-22.1.0::gentoo
+# required by llvm-core/clang-22.1.0-r2::gentoo
+# required by llvm-runtimes/libunwind-22.1.0::gentoo
+# required by llvm-runtimes/clang-unwindlib-config-22::gentoo[llvm-libunwind,default-compiler-rt]
+>=llvm-runtimes/clang-runtime-22 llvm-libunwind default-compiler-rt default-lld
+# required by llvm-runtimes/clang-runtime-22::gentoo
+# required by llvm-core/clang-common-22.1.0::gentoo
+# required by llvm-core/clang-22.1.0-r2::gentoo
+# required by llvm-runtimes/libunwind-22.1.0::gentoo
+# required by llvm-runtimes/clang-unwindlib-config-22::gentoo[llvm-libunwind,default-compiler-rt]
+>=llvm-core/clang-linker-config-22 default-lld
+# required by llvm-runtimes/clang-runtime-22::gentoo
+# required by llvm-core/clang-common-22.1.0::gentoo
+# required by llvm-core/clang-22.1.0-r2::gentoo
+# required by llvm-runtimes/libunwind-22.1.0::gentoo
+# required by llvm-runtimes/clang-unwindlib-config-22::gentoo[llvm-libunwind,default-compiler-rt]
+>=llvm-runtimes/clang-rtlib-config-22 default-compiler-rt
+# required by llvm-runtimes/clang-runtime-22::gentoo
+# required by llvm-core/clang-common-22.1.0::gentoo
+# required by llvm-core/clang-22.1.0-r2::gentoo
+# required by llvm-runtimes/libunwind-22.1.0::gentoo
+>=llvm-runtimes/clang-unwindlib-config-22 llvm-libunwind default-compiler-rt

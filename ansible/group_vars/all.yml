@@ -1,0 +1,7 @@
+---
+dotfiles_dir: "{{ ansible_facts['env']['HOME'] }}/.powerhouse"
+stow_dir: "{{ dotfiles_dir }}/stow"
+stow_target_home: "{{ ansible_facts['env']['HOME'] }}"
+stow_target_etc: "/etc"
+
+username: "{{ ansible_facts['env']['USER'] }}"

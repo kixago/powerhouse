@@ -1,0 +1,9 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║                    DEVELOPMENT TOOLS USE FLAGS                            ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+# --- Language Servers ---
+dev-util/lua-language-server llvm-libunwind -lua_single_target_lua5-1 lua_single_target_luajit
+
+# --- Node.js ---
+net-libs/nodejs npm corepack
