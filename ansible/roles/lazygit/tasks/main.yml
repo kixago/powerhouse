@@ -1,0 +1,7 @@
+---
+- name: Stow lazygit config
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t {{ stow_target_home }} lazygit
+  check_mode: false
+  register: stow_lazygit
+  changed_when: stow_lazygit.rc != 0
