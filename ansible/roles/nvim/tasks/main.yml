@@ -1,0 +1,7 @@
+---
+- name: Stow nvim config
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t {{ stow_target_home }} nvim
+  check_mode: false
+  register: stow_nvim
+  changed_when: stow_nvim.rc != 0
