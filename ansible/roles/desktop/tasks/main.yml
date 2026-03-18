@@ -1,0 +1,7 @@
+---
+- name: Stow desktop configs
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t {{ stow_target_home }} desktop
+  check_mode: false
+  register: stow_desktop
+  changed_when: stow_desktop.rc != 0

@@ -1,0 +1,7 @@
+---
+- name: Stow ags config
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t {{ stow_target_home }} ags
+  check_mode: false
+  register: stow_ags
+  changed_when: stow_ags.rc != 0

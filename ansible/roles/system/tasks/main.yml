@@ -1,0 +1,8 @@
+---
+- name: Stow system configs
+  ansible.builtin.shell: |
+    stow -d {{ stow_dir }} -t / system
+  become: true
+  check_mode: false
+  register: stow_system
+  changed_when: stow_system.rc != 0
