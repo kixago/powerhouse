@@ -87,11 +87,16 @@ powerhouse() {
   check)
     ansible-playbook ~/.powerhouse/ansible/site.yml --diff --check -i ~/.powerhouse/ansible/inventory.ini
     ;;
+  verify)
+    echo "Checking for symlink drift..."
+    sudo stow -d ~/.powerhouse/stow -t / system --verbose=2 --simulate 2>&1 | grep -i "conflict\|exist\|skip"
+    stow -d ~/.powerhouse/stow -t ~ shell nvim desktop ags lazygit mpv --verbose=2 --simulate 2>&1 | grep -i "conflict\|exist\|skip"
+    ;;
   lint)
     ansible-lint ~/.powerhouse/ansible/site.yml
     ;;
   *)
-    echo "Usage: powerhouse [apply|check|lint]"
+    echo "Usage: powerhouse [apply|check|verify|lint]"
     ;;
   esac
 }
