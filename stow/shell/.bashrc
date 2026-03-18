@@ -76,3 +76,22 @@ export SSH_AUTH_SOCK=~/.ssh/agent/ssh-agent.socket
 if [ -S "$SSH_AUTH_SOCK" ] && ! ssh-add -l &>/dev/null; then
   ssh-add ~/.ssh/id_ed25519_github
 fi
+
+# --- Powerhouse Ansible ---
+powerhouse() {
+  local cmd="${1:-apply}"
+  case "$cmd" in
+  apply)
+    ansible-playbook ~/.powerhouse/ansible/site.yml --diff -i ~/.powerhouse/ansible/inventory.ini
+    ;;
+  check)
+    ansible-playbook ~/.powerhouse/ansible/site.yml --diff --check -i ~/.powerhouse/ansible/inventory.ini
+    ;;
+  lint)
+    ansible-lint ~/.powerhouse/ansible/site.yml
+    ;;
+  *)
+    echo "Usage: powerhouse [apply|check|lint]"
+    ;;
+  esac
+}

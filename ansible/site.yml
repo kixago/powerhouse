@@ -5,6 +5,7 @@
 
   roles:
     - portage
+    - workstation
     - shell
     - nvim
     - desktop

@@ -1,0 +1,6 @@
+---
+- name: Install world packages
+  ansible.builtin.command:
+    cmd: emerge --noreplace @world
+  become: true
+  changed_when: false
