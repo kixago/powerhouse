@@ -39,7 +39,7 @@ opt.smartcase = true
 -- │                         HISTORY & UNDO                                    │
 -- └──────────────────────────────────────────────────────────────────────────┘
 opt.undofile = true
-opt.undodir = vim.fn.expand("~/.config/nvim/undo")
+opt.undodir = vim.fn.expand("~/.local/share/nvim/undo")
 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                            BEHAVIOR                                       │

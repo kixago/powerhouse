@@ -73,6 +73,6 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/agent/ssh-agent.socket
 
 # Auto-add GitHub key if agent is empty
-if ! ssh-add -l &>/dev/null; then
+if [ -S "$SSH_AUTH_SOCK" ] && ! ssh-add -l &>/dev/null; then
   ssh-add ~/.ssh/id_ed25519_github
 fi

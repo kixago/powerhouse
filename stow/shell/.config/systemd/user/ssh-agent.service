@@ -1,0 +1,10 @@
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+ExecStartPre=/bin/rm -f %h/.ssh/agent/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a %h/.ssh/agent/ssh-agent.socket
+
+[Install]
+WantedBy=default.target

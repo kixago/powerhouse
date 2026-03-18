@@ -5,3 +5,10 @@
   check_mode: false
   register: stow_shell
   changed_when: stow_shell.rc != 0
+
+- name: Enable ssh-agent user service
+  ansible.builtin.systemd:
+    name: ssh-agent.service
+    enabled: true
+    scope: user
+    daemon_reload: true
