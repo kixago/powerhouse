@@ -1,4 +1,10 @@
 ---
+- name: Create nvim undo directory
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/share/nvim/undo"
+    state: directory
+    mode: '0755'
+
 - name: Stow nvim config
   ansible.builtin.shell: |
     stow -d {{ stow_dir }} -t {{ stow_target_home }} nvim
