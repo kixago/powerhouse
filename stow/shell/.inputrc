@@ -1,0 +1,60 @@
+# ~/.inputrc
+
+# Essential fix for insert vs overwrite
+set keyseq-timeout 50
+
+# Show mode in prompt (works with your bashrc cursor shapes)
+set show-mode-in-prompt on
+
+$if mode=vi
+  set editing-mode vi
+
+  # ----- NORMAL MODE -----
+  set keymap vi-command
+
+  # History search with / (already default, but being explicit)
+  "/": vi-search
+  "?": vi-search-backward
+  "n": vi-search-again
+  "N": vi-search-again-backward
+
+  # Y yanks to end of line (neovim behavior, not classic vi)
+  "Y": "\e$y"
+
+  # Ctrl-p/n for history (feels more natural)
+  "\C-p": previous-history
+  "\C-n": next-history
+
+  # gg goes to beginning of history (first command)
+  "gg": beginning-of-history
+
+  # G goes to end of history (most recent)
+  "G": end-of-history
+
+  # Ctrl-l to clear screen in normal mode
+  "\C-l": clear-screen
+
+  # ----- INSERT MODE -----
+  set keymap vi-insert
+
+  # Fix delete/backspace
+  "\C-?": backward-delete-char
+  "\e[3~": delete-char
+
+  # jk to escape (super common neovim mapping)
+  "jk": vi-movement-mode
+
+  # Ctrl-l to clear screen
+  "\C-l": clear-screen
+
+  # Emacs-style shortcuts that are useful even for vim users
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
+  "\C-w": backward-kill-word
+  "\C-u": backward-kill-line
+
+  # Ctrl-p/n for quick history cycling while typing
+  "\C-p": previous-history
+  "\C-n": next-history
+
+$endif
