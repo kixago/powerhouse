@@ -5,9 +5,17 @@
   check_mode: false
   changed_when: false
 
+- name: Clone powerhouse-repo overlay
+  ansible.builtin.git:
+    repo: git@github.com:kixago/powerhouse-repo.git
+    dest: /var/db/repos/powerhouse-repo
+    version: main
+  become: true
+  when: not ansible_check_mode
+
 - name: Stow portage config
   ansible.builtin.shell: |
-    stow -d {{ stow_dir }} -t /etc portage
+    stow -d {{ stow_dir }} -t / portage
   become: true
   check_mode: false
   register: stow_portage
