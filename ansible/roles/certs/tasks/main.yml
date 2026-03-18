@@ -1,16 +1,25 @@
 ---
+- name: Check if rbw is unlocked
+  ansible.builtin.command:
+    cmd: rbw unlocked
+  register: rbw_status
+  changed_when: false
+  failed_when: false
+
 - name: Fetch root CA from Bitwarden
   ansible.builtin.command:
     cmd: rbw get "kixago-root-ca.crt" --field notes
   register: root_ca
   changed_when: false
   no_log: true
+  when: rbw_status.rc == 0
 
 - name: Write root CA certificate to home
   ansible.builtin.copy:
     content: "{{ root_ca.stdout }}\n"
     dest: "{{ ansible_facts['env']['HOME'] }}/kixago-root-ca.crt"
     mode: '0644'
+  when: rbw_status.rc == 0
 
 - name: Create local CA certificates directory
   ansible.builtin.file:
@@ -25,9 +34,11 @@
     dest: /usr/local/share/ca-certificates/kixago-root-ca.crt
     mode: '0644'
   become: true
+  when: rbw_status.rc == 0
 
 - name: Update CA certificates
   ansible.builtin.command:
     cmd: update-ca-certificates
   become: true
   changed_when: false
+  when: rbw_status.rc == 0
