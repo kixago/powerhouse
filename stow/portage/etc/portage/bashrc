@@ -1,0 +1,27 @@
+if [[ "${EBUILD_PHASE}" == "setup" ]]; then
+    # Skip Polly for LLVM toolchain packages (bootstrap problem)
+    case "${CATEGORY}/${PN}" in
+        llvm-core/*|llvm-runtimes/*)
+            return
+            ;;
+    esac
+
+    # Only inject Polly for these env profiles
+    _use_polly=0
+    if [[ -f /etc/portage/package.env ]]; then
+        if grep -qE "^${CATEGORY}/${PN}[[:space:]]+(zen3-extreme|zen3-extreme-noltostrip|zen3-bolt)" /etc/portage/package.env 2>/dev/null; then
+            _use_polly=1
+        fi
+    fi
+
+    if [[ ${_use_polly} -eq 1 ]]; then
+        # Find the highest available LLVM slot with Polly
+        for slot in 22 21 20 19; do
+            if [[ -f "/usr/lib/llvm/${slot}/lib64/LLVMPolly.so" ]]; then
+                export CFLAGS="${CFLAGS} -fpass-plugin=/usr/lib/llvm/${slot}/lib64/LLVMPolly.so"
+                export CXXFLAGS="${CXXFLAGS} -fpass-plugin=/usr/lib/llvm/${slot}/lib64/LLVMPolly.so"
+                break
+            fi
+        done
+    fi
+fi

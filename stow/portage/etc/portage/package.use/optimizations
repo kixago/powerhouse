@@ -1,0 +1,27 @@
+# === Performance Optimizations (LTO/PGO) ===
+
+# Browsers
+www-client/firefox lto pgo
+www-client/brave-browser lto
+
+# Compilers & Toolchains (llvm-core handled in llvm-toolchain)
+sys-devel/binutils lto
+dev-lang/python lto pgo
+dev-lang/rust lto
+
+# Graphics & Media
+media-video/mpv lto
+media-video/ffmpeg lto
+media-libs/mesa lto
+gui-wm/hyprland lto
+
+# Core System
+sys-apps/coreutils lto pgo
+sys-apps/bash pgo
+app-arch/xz-utils pgo
+# PGO - significant gains, worth the build time
+app-shells/bash pgo
+dev-lang/python pgo
+www-client/firefox pgo
+sys-apps/coreutils pgo
+app-arch/xz-utils pgo

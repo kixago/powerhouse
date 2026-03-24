@@ -39,7 +39,7 @@ bind -m vi-insert '"\C-l": clear-screen'
 # 1. Main sudo-rs wrapper
 # Preserves HOME so Neovim/IDE configs work under sudo
 sudo() {
-  command sudo-rs --preserve-env=HOME,XDG_CONFIG_HOME,XDG_DATA_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,TERM,COLORTERM "$@"
+  command sudo-rs --preserve-env=HOME,PATH,XDG_CONFIG_HOME,XDG_DATA_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,TERM,COLORTERM "$@"
 }
 
 # 2. Automated visudo-rs elevation
@@ -100,4 +100,13 @@ powerhouse() {
     echo "Usage: powerhouse [apply|check|verify|lint]"
     ;;
   esac
+}
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }

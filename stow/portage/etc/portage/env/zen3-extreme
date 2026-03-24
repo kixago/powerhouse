@@ -1,0 +1,6 @@
+COMMON_FLAGS="-march=znver3 -mtune=znver3 -O3 -pipe \
+  -fno-semantic-interposition -fno-plt \
+  -fvectorize -fslp-vectorize"
+CFLAGS="${COMMON_FLAGS} -flto=thin"
+CXXFLAGS="${COMMON_FLAGS} -flto=thin"
+LDFLAGS="${LDFLAGS} -Wl,--gc-sections -Wl,-O2"

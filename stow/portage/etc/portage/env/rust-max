@@ -1,0 +1,1 @@
+RUSTFLAGS="-C opt-level=3 -C target-cpu=znver3 -C codegen-units=1"

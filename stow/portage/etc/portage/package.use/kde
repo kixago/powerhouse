@@ -1,0 +1,18 @@
+# Qt6 - needs X for KDE apps (they run Wayland-native but build needs X)
+dev-qt/qtbase gui widgets icu opengl vulkan wayland X concurrent dbus network sql sqlite ssl
+dev-qt/qtdeclarative opengl vulkan
+dev-qt/qtwayland compositor
+dev-qt/qtmultimedia X qml wayland
+dev-qt/qt5compat icu qml
+
+# KDE Frameworks 6 - needs X for dolphin/plasma components
+kde-frameworks/kwindowsystem wayland X
+kde-frameworks/kconfig qml
+kde-frameworks/sonnet qml
+kde-frameworks/ki18n qml
+kde-frameworks/kcoreaddons qml
+kde-frameworks/kitemmodels qml
+
+# KDE Apps
+kde-apps/dolphin semantic-desktop
+kde-misc/kdeconnect wayland

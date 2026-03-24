@@ -151,12 +151,14 @@ window#bar {
 
 .section-center-group,
 .section-right {
-  background: linear-gradient(to bottom, ${colors.glassTop}, ${colors.glassBottom});
+  /* Faint white tint instead of dark glass */
+  background: rgba(255, 255, 255, 0.05); 
   border-radius: 0 0 ${radius.lg} ${radius.lg};
   padding: 6px 16px 10px 16px;
   margin-top: -6px;
-  border: 1px solid ${colors.overlay6};
-  box-shadow: ${shadow.md}, ${shadow.insetLight};
+  /* Thin, light border for that 'edge' look */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: ${shadow.md}, inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .section-center {

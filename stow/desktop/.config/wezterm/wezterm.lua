@@ -1,23 +1,37 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- 🔤 FONT
-config.font = wezterm.font('ZedMono Nerd Font')
-config.font_size = 14.0
+-- 🔤 FONT with FALLBACK
+-- This ensures ZedMono is #1, but Noto handles the Hebrew/Shrugs
+config.font = wezterm.font_with_fallback({
+  'ZedMono Nerd Font',
+  'Noto Sans Hebrew',
+  'Noto Sans CJK JP',
+})
 
+-- 🌐 BIDI / RTL SUPPORT
+config.bidi_enabled = true
+config.font_shaper = 'Harfbuzz' -- Fixed field name
+
+-- 📐 ADJUST SIZE FOR ULTRAWIDES
+-- If 14.0 was good before, try 16.0 or 17.0 now
+config.font_size = 16.0
+
+-- This prevents the "shrinking" effect by forcing a specific line height
+config.line_height = 1.1
 -- 🎨 COLORS - Catppuccin Mocha with pure black background
 config.color_scheme = 'Catppuccin Mocha'
 config.colors = {
-    background = '#000000',
+  background = '#000000',
 }
 
 -- 🪟 WINDOW
 config.window_decorations = "NONE"
 config.window_padding = {
-    left = '0.5cell',
-    right = '0.5cell',
-    top = '0.25cell',
-    bottom = '0.25cell',
+  left = '0.5cell',
+  right = '0.5cell',
+  top = '0.25cell',
+  bottom = '0.25cell',
 }
 
 -- 👀 OPACITY + BLUR (KDE/Hyprland)
@@ -26,13 +40,13 @@ config.kde_window_background_blur = true
 
 -- Dim when unfocused
 wezterm.on('window-focus-changed', function(window, pane)
-    local overrides = window:get_config_overrides() or {}
-    if window:is_focused() then
-        overrides.window_background_opacity = 0.95
-    else
-        overrides.window_background_opacity = 0.75
-    end
-    window:set_config_overrides(overrides)
+  local overrides = window:get_config_overrides() or {}
+  if window:is_focused() then
+    overrides.window_background_opacity = 0.95
+  else
+    overrides.window_background_opacity = 0.75
+  end
+  window:set_config_overrides(overrides)
 end)
 
 -- 📑 TABS
@@ -44,9 +58,9 @@ config.tab_max_width = 32
 -- 🔔 BELL
 config.audible_bell = "Disabled"
 config.visual_bell = {
-    fade_in_duration_ms = 75,
-    fade_out_duration_ms = 75,
-    target = 'CursorColor',
+  fade_in_duration_ms = 75,
+  fade_out_duration_ms = 75,
+  target = 'CursorColor',
 }
 
 -- ⚙️ GENERAL
@@ -64,39 +78,39 @@ config.cursor_blink_ease_out = 'Constant'
 
 -- 🖱️ MOUSE
 config.mouse_bindings = {
-    -- Right click paste
-    {
-        event = { Down = { streak = 1, button = 'Right' } },
-        mods = 'NONE',
-        action = wezterm.action.PasteFrom 'Clipboard',
-    },
+  -- Right click paste
+  {
+    event = { Down = { streak = 1, button = 'Right' } },
+    mods = 'NONE',
+    action = wezterm.action.PasteFrom 'Clipboard',
+  },
 }
 
 -- ⌨️ KEYBINDINGS
 config.keys = {
-    -- Fullscreen toggle
-    { key = 'n', mods = 'SHIFT|CTRL', action = wezterm.action.ToggleFullScreen },
-    
-    -- Tab management
-    { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-    { key = 'w', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentTab { confirm = true } },
-    { key = 'Tab', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(1) },
-    { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateTabRelative(-1) },
-    
-    -- Pane splitting
-    { key = '|', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = '_', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
-    
-    -- Pane navigation
-    { key = 'h', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Left' },
-    { key = 'l', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Right' },
-    { key = 'k', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Up' },
-    { key = 'j', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Down' },
-    
-    -- Font size
-    { key = '+', mods = 'CTRL|SHIFT', action = wezterm.action.IncreaseFontSize },
-    { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
-    { key = '0', mods = 'CTRL', action = wezterm.action.ResetFontSize },
+  -- Fullscreen toggle
+  { key = 'n',   mods = 'SHIFT|CTRL', action = wezterm.action.ToggleFullScreen },
+
+  -- Tab management
+  { key = 't',   mods = 'CTRL|SHIFT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
+  { key = 'w',   mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentTab { confirm = true } },
+  { key = 'Tab', mods = 'CTRL',       action = wezterm.action.ActivateTabRelative(1) },
+  { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateTabRelative(-1) },
+
+  -- Pane splitting
+  { key = '|',   mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '_',   mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+
+  -- Pane navigation
+  { key = 'h',   mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Left' },
+  { key = 'l',   mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Right' },
+  { key = 'k',   mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Up' },
+  { key = 'j',   mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Down' },
+
+  -- Font size
+  { key = '+',   mods = 'CTRL|SHIFT', action = wezterm.action.IncreaseFontSize },
+  { key = '-',   mods = 'CTRL',       action = wezterm.action.DecreaseFontSize },
+  { key = '0',   mods = 'CTRL',       action = wezterm.action.ResetFontSize },
 }
 
 return config

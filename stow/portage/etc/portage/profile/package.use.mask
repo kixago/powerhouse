@@ -1,0 +1,2 @@
+llvm-core/* LLVM_TARGETS: ARM AVR Hexagon Lanai LoongArch MSP430 Mips NVPTX PowerPC RISCV SPIRV Sparc SystemZ VE XCore ARC CSKY DirectX M68k Xtensa
+llvm-runtimes/* LLVM_TARGETS: ARM AVR Hexagon Lanai LoongArch MSP430 Mips NVPTX PowerPC RISCV SPIRV Sparc SystemZ VE XCore ARC CSKY DirectX M68k Xtensa

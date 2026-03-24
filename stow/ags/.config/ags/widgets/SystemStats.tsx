@@ -33,7 +33,17 @@ async function getCpuPercent(): Promise<string> {
 /* ─────────────────────────────────────────────
    RAM USAGE
 ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   RAM USAGE (in GiB)
+───────────────────────────────────────────── */
 
+async function getRamUsed(): Promise<string> {
+  const val = await sh(
+    "awk '/MemTotal/ {t=$2} /MemAvailable/ {a=$2} END {printf \"%.1f\", (t-a)/1048576}' /proc/meminfo",
+    "0",
+  );
+  return `${val}G`;
+}
 async function getRamPercent(): Promise<string> {
   const val = await sh(
     "awk '/MemTotal/ {t=$2} /MemAvailable/ {a=$2} END {printf \"%.0f\", (1-a/t)*100}' /proc/meminfo",
@@ -100,7 +110,8 @@ function heatColor(value: number): string {
 export function SystemStats() {
   // Polls for percentages (these work fine with createPoll)
   const cpu = createPoll("0%", 2000, getCpuPercent);
-  const ram = createPoll("0%", 2000, getRamPercent);
+  // const ram = createPoll("0%", 2000, getRamPercent);
+const ram = createPoll("0G", 2000, getRamUsed);
   const gpu = createPoll("0%", 2000, getGpuPercent);
 
   // Manual state for temps (more reliable)

@@ -26,11 +26,15 @@ keymap("n", "<leader>-", "<cmd>Yazi<CR>", opts("Open Yazi"))
 keymap("n", "<leader>cw", "<cmd>Yazi cwd<CR>", opts("Open Yazi in current directory"))
 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
--- │                        FORMATTING SHORTCUT                                │
+-- │                         FORMATTING SHORTCUT                              │
 -- └──────────────────────────────────────────────────────────────────────────┘
-keymap("n", "cf", function()
-  require("conform").format({ async = true, lsp_fallback = true })
-end, opts("Format buffer"))
+keymap({ "n", "v" }, "<leader>cf", function()
+  require("conform").format({
+    async = true,
+    lsp_fallback = true,
+    timeout_ms = 500,
+  })
+end, opts("Format buffer or selection"))
 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                   HISTORY AND DIAGNOSTICS TOGGLES                         │

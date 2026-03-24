@@ -1,0 +1,11 @@
+# /etc/portage/env/www-client/firefox
+# Specific tuning for the C++/Rust bridge in Firefox
+COMMON_FLAGS="-O3 -march=znver3 -mtune=znver3 -pipe"
+CFLAGS="${COMMON_FLAGS} -flto=thin"
+CXXFLAGS="${COMMON_FLAGS} -flto=thin"
+
+# We force the LLVM Gold plugin and LLD for the cross-language LTO
+LDFLAGS="${LDFLAGS} -fuse-ld=lld -Wl,--thinlto-cache-dir=/var/tmp/portage/thinlto_cache"
+
+# Firefox's internal build system needs to know we want high-perf Rust
+export RUSTFLAGS="-C opt-level=3 -C target-cpu=native -C lto=thin"

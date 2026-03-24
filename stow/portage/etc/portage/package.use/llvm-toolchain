@@ -1,0 +1,33 @@
+# === LLVM Toolchain (no-multilib + features/llvm profile equivalent) ===
+
+# Core toolchain
+llvm-core/clang-common default-compiler-rt default-lld default-libcxx llvm-libunwind
+llvm-core/clang-linker-config default-lld
+llvm-core/llvm -binutils-plugin lto
+llvm-core/clang lto
+
+# Runtime libraries
+llvm-runtimes/clang-runtime compiler-rt libcxx default-compiler-rt default-lld default-libcxx llvm-libunwind -sanitize
+llvm-runtimes/clang-rtlib-config default-compiler-rt
+llvm-runtimes/clang-stdlib-config default-libcxx
+llvm-runtimes/clang-unwindlib-config default-compiler-rt llvm-libunwind
+llvm-runtimes/libunwind static-libs
+llvm-runtimes/libcxx libcxxabi
+llvm-runtimes/compiler-rt clang
+llvm-runtimes/compiler-rt-sanitizers profile orc sanitize
+
+# Native symlinks
+llvm-core/clang-toolchain-symlinks native-symlinks
+llvm-core/lld-toolchain-symlinks native-symlinks
+llvm-core/llvm-toolchain-symlinks native-symlinks
+llvm-core/llvm bolt binutils-plugin
+llvm-runtimes/libcxx static-libs
+llvm-runtimes/libcxxabi static-libs
+
+# LLVM slot forcing 22
+
+# dev-qt/qttools -llvm_slot_21 llvm_slot_20
+# dev-util/bpftool -llvm_slot_21 llvm_slot_20
+# media-libs/mesa -llvm_slot_21 llvm_slot_20
+# www-client/firefox -llvm_slot_21 llvm_slot_20
+# dev-util/tree-sitter-cli -llvm_slot_21 llvm_slot_20
