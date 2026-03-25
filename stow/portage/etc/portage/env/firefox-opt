@@ -1,6 +1,6 @@
 # /etc/portage/env/firefox-opt
 # Let Firefox handle most of the optimization itself
-COMMON_FLAGS="-O2 -march=znver3 -mtune=znver3 -pipe"
+COMMON_FLAGS="-O3 -march=znver3 -mtune=znver3 -pipe"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 
