@@ -1,0 +1,6 @@
+CC="gcc"
+CXX="g++"
+COMMON_FLAGS="-O3 -march=znver3 -mtune=znver3 -pipe -fno-pie"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+LDFLAGS="-Wl,--as-needed -no-pie -Wl,-q"

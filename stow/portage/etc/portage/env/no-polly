@@ -1,4 +1,0 @@
-COMMON_FLAGS="-march=znver3 -mtune=znver3 -O2 -pipe"
-CFLAGS="${COMMON_FLAGS}"
-CXXFLAGS="${COMMON_FLAGS}"
-LDFLAGS="-fuse-ld=lld -Wl,--as-needed"
